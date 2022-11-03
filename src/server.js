@@ -74,6 +74,16 @@ app.put('/todo/:id', checkAccount, (req, res) => {
     updatedTodo.deadline = new Date(deadline);
 
     return res.json(updatedTodo);
-})
+});
+
+app.patch('/todo/:id/done', checkAccount, (req, res) => {
+    const { user } = req;
+    const { id } = req.params;
+    const patchedTodo = user.todos.find(todo => todo.id === id);
+
+    patchedTodo.done = true;
+
+    return res.json(patchedTodo);
+});
 
 app.listen(3333, () => console.log('server is running'));
