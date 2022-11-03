@@ -86,4 +86,18 @@ app.patch('/todo/:id/done', checkAccount, (req, res) => {
     return res.json(patchedTodo);
 });
 
+app.delete('/todo/:id', checkAccount, (req, res) => {
+    const { user } = req;
+    const { id } = req.params;
+    const deletedTodo = user.todos.findIndex(todo => todo.id === id);
+
+    if (deletedTodo === -1) {
+        return res.status(404).json({ error: 'todo not found' });
+    };
+
+    user.todos.splice(deletedTodo, 1);
+
+    return res.json(user);
+});
+
 app.listen(3333, () => console.log('server is running'));

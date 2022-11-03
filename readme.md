@@ -1,6 +1,6 @@
-[]    - Criar um novo *todo*;
-[]    - Listar todos os *todos*;
-[]    - Alterar o `title` e `deadline` de um *todo* existente;
-[]    - Marcar um *todo* como feito;
-[]    - Excluir um *todo*;
-[]    -  criar user
+[]    - Create a new *todo*;
+[]    - List all *todos*;
+[]    - Alter `title` and `deadline`;
+[]    - Mark a *todo* as `done`;
+[]    - Exclude a *todo*;
+[]    - Create user
