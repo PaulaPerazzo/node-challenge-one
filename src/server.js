@@ -7,11 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const users = []
+const users = [];
 
 function checkAccount(req, res, next) {
     const { username } = req.headers;
-    const user = user.find(user => user.username === username);
+    const user = users.find(user => user.username === username);
 
     if (!user) {
         return res.status(404).json({error: "user not found"});
@@ -39,9 +39,13 @@ app.post('/user', (req, res) => {
         todos: [],
     });
 
-    return res.status(201).json(users);
+    return res.status(201).send();
 });
 
+app.get('/todos', checkAccount, (req, res) => {
+    const { user } = req;
 
+    return res.json(user.todos);
+});
 
 app.listen(3333, () => console.log('server is running'));
