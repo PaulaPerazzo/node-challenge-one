@@ -64,4 +64,16 @@ app.post('/todo', checkAccount, (req, res) => {
     return res.json(user.todos);
 });
 
+app.put('/todo/:id', checkAccount, (req, res) => {
+    const { user } = req;
+    const { title, deadline } = req.body;
+    const { id } = req.params;
+    const updatedTodo = user.todos.find(todo => todo.id === id);
+
+    updatedTodo.title = title;
+    updatedTodo.deadline = new Date(deadline);
+
+    return res.json(updatedTodo);
+})
+
 app.listen(3333, () => console.log('server is running'));
