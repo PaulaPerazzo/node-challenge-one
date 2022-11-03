@@ -48,4 +48,20 @@ app.get('/todos', checkAccount, (req, res) => {
     return res.json(user.todos);
 });
 
+app.post('/todo', checkAccount, (req, res) => {
+    const { user } = req;
+    const id = uuidv4();
+    const { title } = req.body;
+
+    user.todos.push({
+        id,
+        title,
+        done: false,
+        deadline: new Date(2022-11-04),
+        createdAt: new Date(),
+    });
+
+    return res.json(user.todos);
+});
+
 app.listen(3333, () => console.log('server is running'));
